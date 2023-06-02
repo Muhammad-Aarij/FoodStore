@@ -5,22 +5,25 @@ import { TouchableOpacity, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import First from './Firstt';
-import Sec from './Sec';
-import Thrd from './Thrd';
-import Fourth from './Fourth';
-import Lendingpg from './Lendingpg';
-import CustomerSignin from './CustomerSignin';
-import CustomerSignup from './CustomerSignup';
-import Categorypg from './Categorypg';
-import HelipSupport from './HelipSupport';
-import Feedback from './Feedback';
-import AdminCustomer from './AdminCustomer';
-import AdminSignin from './AdminSignin';
-import AdminDashboard from './AdminDashboard'
-import AdminOrders from './AdminOrders';
-import AdminOrderProcessing from './AdminOrderProcessing';
-import AdminAddDish from './AdminAddDish';
+import First from './components/lendingpages/Firstt';
+import Sec from './components/lendingpages/Sec';
+import Thrd from './components/lendingpages/Thrd';
+import Fourth from './components/lendingpages/Fourth';
+import Lendingpg from './components/lendingpages/Lendingpg';
+import CustomerSignin from './components/User/CustomerSignin';
+import CustomerSignup from './components/User/CustomerSignup';
+import Categorypg from './components/User/Categorypg';
+import HelipSupport from './components/HelipSupport';
+import Feedback from './components/Feedback';
+import AdminCustomer from './components/admin/AdminCustomer';
+import AdminSignin from './components/admin/AdminSignin';
+import AdminDashboard from './components/admin/AdminDashboard'
+import AdminOrders from './components/admin/AdminOrders';
+import AdminOrderProcessing from './components/admin/AdminOrderProcessing';
+import AdminAddDish from './components/admin/AdminAddDish';
+import Dishes from './components/User/Dishes'
+import Cartt from './components/User/Cartt';
+import Payment from './components/User/Payment';
 
 
 
@@ -89,9 +92,7 @@ function App() {
           ),
         })
         } />
-
-
-        <Stack.Screen name="Categorypg" component={Categorypg} options={({ navigation }) => ({
+        <Stack.Screen name="Payment" component={Payment} options={({ navigation }) => ({
           headerStyle: {
             backgroundColor: 'black',
             opacity: 100,
@@ -112,6 +113,114 @@ function App() {
           ),
         })
         } />
+        <Stack.Screen name="Cartt" component={Cartt} options={({ navigation }) => ({
+          headerStyle: {
+            backgroundColor: 'black',
+            opacity: 100,
+          },
+          headerTitleStyle: {
+            color: "black",
+          },
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 6 }}
+            >
+              <Image
+                source={require("./Categories/back.png")}
+                style={{ width: 32, height: 32, marginTop: 18, }}
+              />
+            </TouchableOpacity>
+          ),
+        })
+        } />
+
+
+        <Stack.Screen
+          name="Categorypg"
+          component={Categorypg}
+          options={({ navigation }) => ({
+            headerStyle: {
+              backgroundColor: 'black',
+              opacity: 100,
+              marginTop: 50,
+            },
+            headerTitleStyle: {
+              color: 'black',
+              alignSelf: 'center',
+            },
+            headerTitle: null,
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={{ marginLeft: 6 }}
+              >
+                <Image
+                  source={require('./Categories/back.png')}
+                  style={{ width: 32, height: 32, marginTop: 18 }}
+                />
+              </TouchableOpacity>
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Cartt')} // Navigate to "Cart" screen
+                style={{ marginRight: 6 }}
+              >
+                <Image
+                  source={require('./Categories/cart.png')}
+                  style={{ width: 42, height: 42, marginTop: 18 }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+
+
+        <Stack.Screen
+          name="Dishes"
+          component={Dishes}
+          options={({ navigation }) => ({
+            headerStyle: {
+              backgroundColor: 'black',
+              opacity: 100,
+              marginTop: 50,
+            },
+            headerTitleStyle: {
+
+              color: "black",
+              alignSelf: 'center', // Align the header title to the center
+            },
+            headerTitle: null, // Hide the title
+
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={{ marginLeft: 6 }}
+              >
+                <Image
+                  source={require("./Categories/back.png")}
+                  style={{ width: 32, height: 32, marginTop: 18 }}
+                />
+              </TouchableOpacity>
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Cartt")}
+                style={{ marginRight: 6 }}
+              >
+                <Image
+                  source={require("./Categories/cart.png")}
+                  style={{ width: 42, height: 42, marginTop: 18 }}
+                />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+
+
+
+
+
 
 
         <Stack.Screen name="Feedback" component={Feedback} options={({ navigation }) => ({
