@@ -23,7 +23,7 @@ import Payment from './components/User/Payment';
 //  import AdminOrderProcessing from './AdminOrderProcessing';
 //  import AdminAddDish from './AdminAddDish';
 //  import Dishes from './Dishes'
- import Cart from './components/User/Cart'
+//  import Cart from './components/User/Cart'
  import Temp from './components/User/Cartt';
 
 

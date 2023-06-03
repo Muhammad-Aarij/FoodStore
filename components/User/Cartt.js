@@ -29,6 +29,13 @@ export default function Cartt({ navigation }) {
 
     }
 
+    const [isToggled, setIsToggled] = useState(false);
+
+    const toggleVariable = () => {
+        setIsToggled(!isToggled);
+    };
+
+
     const dishes = [
         { name: 'Spaghetti Bolognese', price: 12.99 },
         { name: 'Chicken Curry', price: 9.99 },
@@ -43,31 +50,44 @@ export default function Cartt({ navigation }) {
             <View style={styles.upper}>
 
                 <Text style={[styles.txt, { fontSize: 32 }]}>Order Details</Text>
-                <Pressable style={{ backgroundColor: '#252525', borderRadius: 80, width: 120, }}>
+                <Pressable style={{ backgroundColor: '#252525', borderRadius: 80, width: 120, }} onPress={toggleVariable}>
                     <Text style={[styles.txt, { color: "#F76106" }]}>Edit</Text>
                 </Pressable>
 
             </View>
 
 
-            <View style={{ marginBottom: "5%" }}>
+            <View style={{ marginBottom: "5%",marginTop:8 }}>
 
                 {dishes.map((dish, index) => (
-                    <View key={index} style={styles.pressable}>
-                        <View style={{}}>
-                            <Text style={styles.txt}>{dish.name}</Text>
-                            <Text style={[styles.txt, { color: "#F76106", marginTop: 10 }]}>RS: {dish.price}</Text>
+
+                    <View key={index } style={{backgroundColor:'#252525', marginVertical:7,borderRadius:10}} >
+                        <View style={[styles.pressable,{marginTop:5}]}>
+
+                            <View style={{ width: "60%" }}>
+                                <Text style={styles.txt}>{dish.name}</Text>
+                                <Text style={[styles.txt, { color: "#F76106", marginTop: 10 }]}>RS: {dish.price}</Text>
+                            </View>
+
+                            <View style={{ flexDirection: "row", width: "70%", paddingLeft: 30 }}>
+                                <Pressable style={{ justifyContent: "center", marginRight: 10 }} onPress={count == 0 ? nnn : subb} visi>
+                                    <Text style={[styles.txt, { color: "#F76106", height: 30, width: 30, backgroundColor: "black", justifyContent: "center", paddingLeft: 11 }]}>-</Text>
+                                </Pressable>
+                                <Text style={styles.txt}>{count}</Text>
+                                <Pressable style={{ justifyContent: "center", marginLeft: 10 }} onPress={count == 9 ? nnn : addd}>
+                                    <Text style={[styles.txt, { color: "#F76106", height: 30, width: 30, backgroundColor: "black", justifyContent: "center", paddingLeft: 11 }]}>+</Text>
+                                </Pressable>
+                            </View>
                         </View>
 
-                        <View style={{ flexDirection: "row" }}>
-                            <Pressable style={{ justifyContent: "center", marginRight: 10 }} onPress={count == 0 ? nnn : subb}>
-                                <Text style={[styles.txt, { color: "#F76106", height: 30, width: 30, backgroundColor: "black", justifyContent: "center", paddingLeft: 11 }]}>-</Text>
-                            </Pressable>
-                            <Text style={styles.txt}>{count}</Text>
-                            <Pressable style={{ justifyContent: "center", marginLeft: 10 }} onPress={count == 9 ? nnn : addd}>
-                                <Text style={[styles.txt, { color: "#F76106", height: 30, width: 30, backgroundColor: "black", justifyContent: "center", paddingLeft: 11 }]}>+</Text>
-                            </Pressable>
+                        <View>
+
+                           {isToggled && <View style={{marginBottom:5}}>
+                                <Text style={[styles.txt,{color:"#F76106" ,backgroundColor:"black",paddingHorizontal:60,paddingVertical:3,borderRadius:10}]}>Delete</Text>
+                            </View>}
                         </View>
+
+
                     </View>
                 ))
 
@@ -87,9 +107,9 @@ export default function Cartt({ navigation }) {
 
 
             </View>
-                <Pressable style={{ backgroundColor: '#252525', borderRadius: 80, width: 320, height: 40 ,alignSelf:"center",marginBottom:"10%"}} onPress={()=>handleNavigation("Payment")}>
-                    <Text style={[styles.txt, { color: "#F76106" }]}>Proceed to Payment</Text>
-                </Pressable>
+            <Pressable style={{ backgroundColor: '#252525', borderRadius: 80, width: 320, height: 40, alignSelf: "center", marginBottom: "10%" }} onPress={() => handleNavigation("Payment")}>
+                <Text style={[styles.txt, { color: "#F76106" }]}>Proceed to Payment</Text>
+            </Pressable>
 
         </ScrollView>
 
@@ -136,7 +156,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#252525',
         borderRadius: 10,
         flexDirection: "row",
-        height: 110,
+        height: 100,
         color: "white",
         marginTop: "10%",
         // marginHorizontal: "1%",
